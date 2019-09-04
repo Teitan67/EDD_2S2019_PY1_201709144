@@ -1,17 +1,27 @@
 ﻿
-#include "pch.h"
+#include "pch.h" //Estas librerias siempre tienen que ir hasta arriba, si no da un error
 #include <iostream>
+
+#include <string>
 #include <stdlib.h>
+#include <string.h>
 #include<cstdlib> //Libreria para cambiar el color de la consola.
+#include <fstream>
+using namespace std;
 /*
-Apunter personales
-	\t Significa un tab en consola
-	Simbolos particulares usados ═
+	Apunter personales
+		\t Significa un tab en consola
+		Simbolos particulares usados ═
 */
-static int tema = 0;
+
+static int tema = 0; // variable para cambiar el tema
+
+//Defincion de funciones abstractas
 void generarTitulo();
 void generarMenu();
-
+void lectura();
+void abrirArchivo();
+//----------------------------------
 void generarColor(int color) 
 {
 	if (color == 0)
@@ -37,7 +47,7 @@ void opciones(int opc)
 	if (opc==49)
 	{
 		//Codigo para la opción 1
-		printf("\n\t\t\t\t\t dato: 1 ");
+		abrirArchivo();
 	}
 	else if (opc == 50)
 	{
@@ -115,16 +125,29 @@ void generarMenu()
 	printf("\n\t\t\t\t\t 7. Cambiar de tema\n");
 	printf("\n\t\t\t\t\t 8. Salir\n");
 	printf("\n\t\t\t\t\t Entrada %c ",175);
-	std::cin.clear();
-	std::cin >> input;
+	cin.clear();
+	cin >> input;
 	entrada = (int)input;
 	opciones(entrada);
 	
 }
-
+void lectura() 
+{
+	//std::ifstream archivo;
+	//archivo.open("RUTA",ios::in)//abrimos el archivo en modo lectura  
+	
+}
+void abrirArchivo()
+{
+	string ruta="";
+	printf("Ingrese la ruta del archivo: ");
+	cin.ignore();
+	getline(cin,ruta);
+	cout << "Ruta: " << ruta;
+	system("pause");
+}
 int main()
 {
-	
 	system("mode con: cols=100 lines=50");
 	generarColor(tema);//Establecer color de consola. X color de fondo y Y color de letras
 	generarTitulo();
